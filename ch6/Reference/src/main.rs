@@ -26,11 +26,11 @@ fn main() {
     println!("First word = {}",first_word(&str1));//문자열 참조
 }
 fn first_word(s: &String) -> &str{
-    let bytes = s.as_bytes();
-    for (i,&item) in bytes.iter().enumerate() {
-        if item == b' ' {
-            return &s[..i];
+    let bytes = s.as_bytes();//byte 배열로 변환
+    for (i,&item) in bytes.iter().enumerate() {//반복문 (index,&element) 튜플을 이용
+        if item == b' ' {//바이트 배열로 바꾼 bytes에 의해서 for문을 도는데 즉 ' '의 바이트와 같으면 
+            return &s[..i];//처음부터 공백의 index 전까지 반환
         }
     }
-    &s[..]
-}
+    &s[..]//공백이 없었으면 전체를 하나의 문자열로 인식하여 반환
+}//C언어와 다르게 Rus는 문자열을 UTF-8 포맷으로 저장하기 때문에 index로 접근 불가
